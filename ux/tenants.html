@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KenyaRent Pro - Rental Property Management System</title>
+  
+  <!-- Dependencies -->
+  <link  rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+  </head>
+<!-- Tenants Page -->
+      <div id="tenants" class="page-section hidden">
+        <div class="flex justify-between items-center mb-6">
+          <div>
+            <h2 class="text-xl font-bold text-gray-800">Tenants Directory</h2>
+            <p class="text-gray-600">Manage tenant information and profiles</p>
+          </div>
+          <button class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg flex items-center">
+            <i class="fas fa-user-plus mr-2"></i> Add New Tenant
+          </button>
+        </div>
+
+        <!-- Filters -->
+        <div class="bg-white rounded-lg shadow p-4 mb-6">
+          <div class="flex flex-wrap gap-4">
+            <div class="flex-1 min-w-[200px]">
+              <label class="block text-sm font-medium text-gray-700 mb-1">Search Tenants</label>
+              <div class="relative">
+                <input type="text" placeholder="Search by name, ID, or phone number..." class="w-full border border-gray-300 rounded-md pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+              </div>
+            </div>
+            <div class="w-[150px]">
+              <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+              <select class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                <option value="">All Status</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+                <option value="pending">Pending</option>
+              </select>
+            </div>
+            <div class="w-[200px]">
+              <label class="block text-sm font-medium text-gray-700 mb-1">Property</label>
+              <select class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                <option value="">All Properties</option>
+                <option value="sunshine">Sunshine Towers</option>
+                <option value="green">Green Gardens</option>
+                <option value="riverside">Riverside Estate</option>
+                <option value="parkview">Parkview Heights</option>
+              </select>
+            </div>
+            <div class="w-[150px] flex items-end">
+              <button class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 px-4 rounded-md flex items-center justify-center">
+                <i class="fas fa-filter mr-2"></i> Filter
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tenants Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <!-- Tenant Card -->
+          <div class="bg-white rounded-lg shadow overflow-hidden">
+            <div class="p-4 border-b">
+              <div class="flex items-center">
+                <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="Alice Wanjiku" class="w-12 h-12 rounded-full object-cover mr-3">
+                <div>
+                  <h3 class="font-semibold text-lg">Alice Wanjiku</h3>
+                  <p class="text-sm text-gray-600">ID: 22518964</p>
+                </div>
+                <div class="ml-auto">
+                  <span class="px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">Active</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 space-y-2">
+              <div class="flex">
+                <i class="fas fa-home text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">Apt 101, Sunshine Towers</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-phone text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">+254 712 345 678</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-envelope text-gray-500 w-5"></i>
+                <p class="text-sm ml-2 truncate">alice.wanjiku@example.com</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-id-card text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">KRA PIN: A012345678B</p>
+              </div>
+            </div>
+            <div class="p-4 bg-gray-50 flex justify-between">
+              <a href="javascript:void(0)" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View Profile</a>
+              <a href="javascript:void(0)" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">Lease Details</a>
+            </div>
+          </div>
+          
+          <!-- Tenant Card -->
+          <div class="bg-white rounded-lg shadow overflow-hidden">
+            <div class="p-4 border-b">
+              <div class="flex items-center">
+                <img src="https://cdn.pixabay.com/photo/2018/08/28/13/29/avatar-3637561_960_720.png" alt="John Omondi" class="w-12 h-12 rounded-full object-cover mr-3">
+                <div>
+                  <h3 class="font-semibold text-lg">John Omondi</h3>
+                  <p class="text-sm text-gray-600">ID: 31245698</p>
+                </div>
+                <div class="ml-auto">
+                  <span class="px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">Active</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 space-y-2">
+              <div class="flex">
+                <i class="fas fa-home text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">Unit B2, Green Gardens</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-phone text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">+254 723 456 789</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-envelope text-gray-500 w-5"></i>
+                <p class="text-sm ml-2 truncate">john.omondi@example.com</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-id-card text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">KRA PIN: B987654321C</p>
+              </div>
+            </div>
+            <div class="p-4 bg-gray-50 flex justify-between">
+              <a href="javascript:void(0)" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View Profile</a>
+              <a href="javascript:void(0)" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">Lease Details</a>
+            </div>
+          </div>
+          
+          <!-- Tenant Card -->
+          <div class="bg-white rounded-lg shadow overflow-hidden">
+            <div class="p-4 border-b">
+              <div class="flex items-center">
+                <img src="https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027367_960_720.png" alt="Mary Wambui" class="w-12 h-12 rounded-full object-cover mr-3">
+                <div>
+                  <h3 class="font-semibold text-lg">Mary Wambui</h3>
+                  <p class="text-sm text-gray-600">ID: 24365789</p>
+                </div>
+                <div class="ml-auto">
+                  <span class="px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">Active</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 space-y-2">
+              <div class="flex">
+                <i class="fas fa-home text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">House 7, Riverside Estate</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-phone text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">+254 734 567 890</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-envelope text-gray-500 w-5"></i>
+                <p class="text-sm ml-2 truncate">mary.wambui@example.com</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-id-card text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">KRA PIN: C123456789D</p>
+              </div>
+            </div>
+            <div class="p-4 bg-gray-50 flex justify-between">
+              <a href="javascript:void(0)" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View Profile</a>
+              <a href="javascript:void(0)" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">Lease Details</a>
+            </div>
+          </div>
+          
+          <!-- Tenant Card -->
+          <div class="bg-white rounded-lg shadow overflow-hidden">
+            <div class="p-4 border-b">
+              <div class="flex items-center">
+                <img src="https://cdn.pixabay.com/photo/2018/08/28/12/41/avatar-3637425_960_720.png" alt="David Kiarie" class="w-12 h-12 rounded-full object-cover mr-3">
+                <div>
+                  <h3 class="font-semibold text-lg">David Kiarie</h3>
+                  <p class="text-sm text-gray-600">ID: 28975631</p>
+                </div>
+                <div class="ml-auto">
+                  <span class="px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">Active</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 space-y-2">
+              <div class="flex">
+                <i class="fas fa-home text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">Apt 304, Parkview Heights</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-phone text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">+254 745 678 901</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-envelope text-gray-500 w-5"></i>
+                <p class="text-sm ml-2 truncate">david.kiarie@example.com</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-id-card text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">KRA PIN: D987654321E</p>
+              </div>
+            </div>
+            <div class="p-4 bg-gray-50 flex justify-between">
+              <a href="javascript:void(0)" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View Profile</a>
+              <a href="javascript:void(0)" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">Lease Details</a>
+            </div>
+          </div>
+
+          <!-- Tenant Card -->
+          <div class="bg-white rounded-lg shadow overflow-hidden">
+            <div class="p-4 border-b">
+              <div class="flex items-center">
+                <img src="https://cdn.pixabay.com/photo/2016/08/20/05/38/avatar-1606916_960_720.png" alt="James Maina" class="w-12 h-12 rounded-full object-cover mr-3">
+                <div>
+                  <h3 class="font-semibold text-lg">James Maina</h3>
+                  <p class="text-sm text-gray-600">ID: 32165498</p>
+                </div>
+                <div class="ml-auto">
+                  <span class="px-2 py-1 rounded-full text-xs bg-yellow-100 text-yellow-800">Late Payment</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 space-y-2">
+              <div class="flex">
+                <i class="fas fa-home text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">Unit C5, Serene Apartments</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-phone text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">+254 756 789 012</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-envelope text-gray-500 w-5"></i>
+                <p class="text-sm ml-2 truncate">james.maina@example.com</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-id-card text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">KRA PIN: E123456789F</p>
+              </div>
+            </div>
+            <div class="p-4 bg-gray-50 flex justify-between">
+              <a href="javascript:void(0)" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View Profile</a>
+              <a href="javascript:void(0)" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">Lease Details</a>
+            </div>
+          </div>
+
+          <!-- Tenant Card -->
+          <div class="bg-white rounded-lg shadow overflow-hidden">
+            <div class="p-4 border-b">
+              <div class="flex items-center">
+                <img src="https://cdn.pixabay.com/photo/2014/04/02/14/10/female-306407_960_720.png" alt="Sarah Njeri" class="w-12 h-12 rounded-full object-cover mr-3">
+                <div>
+                  <h3 class="font-semibold text-lg">Sarah Njeri</h3>
+                  <p class="text-sm text-gray-600">ID: 26543198</p>
+                </div>
+                <div class="ml-auto">
+                  <span class="px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">Active</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 space-y-2">
+              <div class="flex">
+                <i class="fas fa-home text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">Apt 202, Sunset Heights</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-phone text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">+254 767 890 123</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-envelope text-gray-500 w-5"></i>
+                <p class="text-sm ml-2 truncate">sarah.njeri@example.com</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-id-card text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">KRA PIN: F987654321G</p>
+              </div>
+            </div>
+            <div class="p-4 bg-gray-50 flex justify-between">
+              <a href="javascript:void(0)" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View Profile</a>
+              <a href="javascript:void(0)" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">Lease Details</a>
+            </div>
+          </div>
+
+          <!-- Tenant Card -->
+          <div class="bg-white rounded-lg shadow overflow-hidden">
+            <div class="p-4 border-b">
+              <div class="flex items-center">
+                <img src="https://cdn.pixabay.com/photo/2018/08/28/12/41/avatar-3637432_960_720.png" alt="George Otieno" class="w-12 h-12 rounded-full object-cover mr-3">
+                <div>
+                  <h3 class="font-semibold text-lg">George Otieno</h3>
+                  <p class="text-sm text-gray-600">ID: 29873216</p>
+                </div>
+                <div class="ml-auto">
+                  <span class="px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">Active</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 space-y-2">
+              <div class="flex">
+                <i class="fas fa-home text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">Unit A1, Lakeside View</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-phone text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">+254 778 901 234</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-envelope text-gray-500 w-5"></i>
+                <p class="text-sm ml-2 truncate">george.otieno@example.com</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-id-card text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">KRA PIN: G123456789H</p>
+              </div>
+            </div>
+            <div class="p-4 bg-gray-50 flex justify-between">
+              <a href="javascript:void(0)" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View Profile</a>
+              <a href="javascript:void(0)" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">Lease Details</a>
+            </div>
+          </div>
+
+          <!-- Tenant Card -->
+          <div class="bg-white rounded-lg shadow overflow-hidden">
+            <div class="p-4 border-b">
+              <div class="flex items-center">
+                <img src="https://cdn.pixabay.com/photo/2017/01/31/19/07/avatar-2026510_960_720.png" alt="Lucy Waithera" class="w-12 h-12 rounded-full object-cover mr-3">
+                <div>
+                  <h3 class="font-semibold text-lg">Lucy Waithera</h3>
+                  <p class="text-sm text-gray-600">ID: 27896543</p>
+                </div>
+                <div class="ml-auto">
+                  <span class="px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">Active</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 space-y-2">
+              <div class="flex">
+                <i class="fas fa-home text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">House 12, Garden Estate</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-phone text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">+254 789 012 345</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-envelope text-gray-500 w-5"></i>
+                <p class="text-sm ml-2 truncate">lucy.waithera@example.com</p>
+              </div>
+              <div class="flex">
+                <i class="fas fa-id-card text-gray-500 w-5"></i>
+                <p class="text-sm ml-2">KRA PIN: H987654321I</p>
+              </div>
+            </div>
+            <div class="p-4 bg-gray-50 flex justify-between">
+              <a href="javascript:void(0)" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View Profile</a>
+              <a href="javascript:void(0)" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">Lease Details</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-6 flex justify-between items-center">
+          <p class="text-sm text-gray-600">Showing 8 of 24 tenants</p>
+          <div class="flex space-x-1">
+            <a href="javascript:void(0)" class="px-3 py-1 rounded border bg-gray-100 text-gray-800 hover:bg-gray-200">Previous</a>
+            <a href="javascript:void(0)" class="px-3 py-1 rounded border bg-blue-600 text-white hover:bg-blue-700">1</a>
+            <a href="javascript:void(0)" class="px-3 py-1 rounded border bg-gray-100 text-gray-800 hover:bg-gray-200">2</a>
+            <a href="javascript:void(0)" class="px-3 py-1 rounded border bg-gray-100 text-gray-800 hover:bg-gray-200">3</a>
+            <a href="javascript:void(0)" class="px-3 py-1 rounded border bg-gray-100 text-gray-800 hover:bg-gray-200">Next</a>
+          </div>
+        </div>
+      </div>

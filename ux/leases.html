@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KenyaRent Pro - Rental Property Management System</title>
+  
+  <!-- Dependencies -->
+  <link  rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+  </head>
+<!-- Leases Page -->
+      <div id="leases" class="page-section hidden">
+        <div class="flex justify-between items-center mb-6">
+          <div>
+            <h2 class="text-xl font-bold text-gray-800">Leases Management</h2>
+            <p class="text-gray-600">Manage lease agreements and terms</p>
+          </div>
+          <button class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg flex items-center">
+            <i class="fas fa-file-contract mr-2"></i> Create New Lease
+          </button>
+        </div>
+
+        <!-- Filters -->
+        <div class="bg-white rounded-lg shadow p-4 mb-6">
+          <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+              <select class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                <option value="">All Statuses</option>
+                <option value="active">Active</option>
+                <option value="expired">Expired</option>
+                <option value="terminated">Terminated</option>
+                <option value="pending">Pending Renewal</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Property</label>
+              <select class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                <option value="">All Properties</option>
+                <option value="sunshine">Sunshine Towers</option>
+                <option value="green">Green Gardens</option>
+                <option value="riverside">Riverside Estate</option>
+                <option value="parkview">Parkview Heights</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
+              <input type="date" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">End Date</label>
+              <input type="date" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+            </div>
+            <div class="flex items-end">
+              <button class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 px-4 rounded-md flex items-center justify-center">
+                <i class="fas fa-filter mr-2"></i> Apply Filters
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leases Table -->
+        <div class="bg-white rounded-lg shadow overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Tenant
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Property/Unit
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Lease Term
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Monthly Rent
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Security Deposit
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Status
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                      <img class="h-8 w-8 rounded-full object-cover" src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="Alice Wanjiku">
+                      <div class="ml-3">
+                        <div class="text-sm font-medium text-gray-900">Alice Wanjiku</div>
+                        <div class="text-sm text-gray-500">ID: 22518964</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">Apt 101, Sunshine Towers</div>
+                    <div class="text-xs text-gray-500">2-Bedroom</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">Jan 15, 2025 - Jan 14, 2026</div>
+                    <div class="text-xs text-gray-500">12 months</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm font-medium text-gray-900">KSh 45,000</div>
+                    <div class="text-xs text-gray-500">Due on 1st</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm font-medium text-gray-900">KSh 90,000</div>
+                    <div class="text-xs text-gray-500">Paid in full</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                      Active
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <a href="javascript:void(0)" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
+                    <a href="javascript:void(0)" class="text-indigo-600 hover:text-indigo-900 mr-3">Renew</a>
+                    <a href="javascript:void(0)" class="text-red-600 hover:text-red-900">Terminate</a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                      <img class="h-8 w-8 rounded-full object-cover" src="https://cdn.pixabay.com/photo/2018/08/28/13/29/avatar-3637561_960_720.png" alt="John Omondi">
+                      <div class="ml-3">
+                        <div class="text-sm font-medium text-gray-900">John Omondi</div>
+                        <div class="text-sm text-gray-500">ID: 31245698</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">Unit B2, Green Gardens</div>
+                    <div class="text-xs text-gray-500">Bedsitter</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">Feb 01, 2025 - Jan 31, 2026</div>
+                    <div class="text-xs text-gray-500">12 months</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm font-medium text-gray-900">KSh 38,000</div>
+                    <div class="text-xs text-gray-500">Due on 5th</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm font-medium text-gray-900">KSh 38,000</div>
+                    <div class="text-xs text-gray-500">Paid in full</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                      Active
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <a href="javascript:void(0)" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
+                    <a href="javascript:void(0)" class="text-indigo-600 hover:text-indigo-900 mr-3">Renew</a>
+                    <a href="javascript:void(0)" class="text-red-600 hover:text-red-900">Terminate</a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                      <img class="h-8 w-8 rounded-full object-cover" src="https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027367_960_720.png" alt="Mary Wambui">
+                      <div class="ml-3">
+                        <div class="text-sm font-medium text-gray-900">Mary Wambui</div>
+                        <div class="text-sm text-gray-500">ID: 24365789</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">House 7, Riverside Estate</div>
+                    <div class="text-xs text-gray-500">4-Bedroom Mansionette</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">Mar 01, 2025 - Feb 28, 2026</div>
+                    <div class="text-xs text-gray-500">12 months</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm font-medium text-gray-900">KSh 65,000</div>
+                    <div class="text-xs text-gray-500">Due on 1st</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm font-medium text-gray-900">KSh 130,000</div>
+                    <div class="text-xs text-gray-500">Paid in full</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                      Active
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <a href="javascript:void(0)" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
+                    <a href="javascript:void(0)" class="text-indigo-600 hover:text-indigo-900 mr-3">Renew</a>
+                    <a href="javascript:void(0)" class="text-red-600 hover:text-red-900">Terminate</a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                      <img class="h-8 w-8 rounded-full object-cover" src="https://cdn.pixabay.com/photo/2018/08/28/12/41/avatar-3637425_960_720.png" alt="David Kiarie">
+                      <div class="ml-3">
+                        <div class="text-sm font-medium text-gray-900">David Kiarie</div>
+                        <div class="text-sm text-gray-500">ID: 28975631</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">Apt 304, Parkview Heights</div>
+                    <div class="text-xs text-gray-500">3-Bedroom</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">Apr 01, 2025 - Mar 31, 2026</div>
+                    <div class="text-xs text-gray-500">12 months</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm font-medium text-gray-900">KSh 42,000</div>
+                    <div class="text-xs text-gray-500">Due on 5th</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm font-medium text-gray-900">KSh 84,000</div>
+                    <div class="text-xs text-gray-500">Paid in full</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                      Active
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <a href="javascript:void(0)" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
+                    <a href="javascript:void(0)" class="text-indigo-600 hover:text-indigo-900 mr-3">Renew</a>
+                    <a href="javascript:void(0)" class="text-red-600 hover:text-red-900">Terminate</a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                      <img class="h-8 w-8 rounded-full object-cover" src="https://cdn.pixabay.com/photo/2016/08/20/05/38/avatar-1606916_960_720.png" alt="James Maina">
+                      <div class="ml-3">
+                        <div class="text-sm font-medium text-gray-900">James Maina</div>
+                        <div class="text-sm text-gray-500">ID: 32165498</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">Unit C5, Serene Apartments</div>
+                    <div class="text-xs text-gray-500">2-Bedroom</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">May 01, 2025 - Apr 30, 2026</div>
+                    <div class="text-xs text-gray-500">12 months</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm font-medium text-gray-900">KSh 50,000</div>
+                    <div class="text-xs text-gray-500">Due on 1st</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm font-medium text-gray-900">KSh 100,000</div>
+                    <div class="text-xs text-gray-500">Paid in full</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                      Late Payment
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <a href="javascript:void(0)" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
+                    <a href="javascript:void(0)" class="text-indigo-600 hover:text-indigo-900 mr-3">Renew</a>
+                    <a href="javascript:void(0)" class="text-red-600 hover:text-red-900">Terminate</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <!-- Pagination -->
+          <div class="px-6 py-4 border-t flex items-center justify-between">
+            <div class="text-sm text-gray-500">
+              Showing <span class="font-medium">1</span> to <span class="font-medium">5</span> of <span class="font-medium">28</span> leases
+            </div>
+            <div class="flex-1 flex justify-end">
+              <a href="javascript:void(0)" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                Previous
+              </a>
+              <a href="javascript:void(0)" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                Next
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lease Analytics -->
+        <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="bg-white p-6 rounded-lg shadow">
+            <h3 class="text-lg font-semibold mb-4">Lease Expiry Calendar</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <h4 class="font-medium text-gray-700 mb-2">Expiring within 30 days</h4>
+                <ul class="space-y-2">
+                  <li class="flex items-center justify-between p-2 bg-red-50 rounded-md">
+                    <div>
+                      <p class="font-medium">Peter Kamau - Apt 105</p>
+                      <p class="text-sm text-gray-600">Jun 28, 2025</p>
+                    </div>
+                    <span class="px-2 py-1 text-xs bg-red-100 text-red-800 rounded-full">5 days</span>
+                  </li>
+                  <li class="flex items-center justify-between p-2 bg-red-50 rounded-md">
+                    <div>
+                      <p class="font-medium">Jane Muthoni - Unit D3</p>
+                      <p class="text-sm text-gray-600">Jul 05, 2025</p>
+                    </div>
+                    <span class="px-2 py-1 text-xs bg-red-100 text-red-800 rounded-full">12 days</span>
+                  </li>
+                  <li class="flex items-center justify-between p-2 bg-red-50 rounded-md">
+                    <div>
+                      <p class="font-medium">Samuel Njoroge - House 4</p>
+                      <p class="text-sm text-gray-600">Jul 15, 2025</p>
+                    </div>
+                    <span class="px-2 py-1 text-xs bg-red-100 text-red-800 rounded-full">22 days</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-700 mb-2">Expiring within 60 days</h4>
+                <ul class="space-y-2">
+                  <li class="flex items-center justify-between p-2 bg-yellow-50 rounded-md">
+                    <div>
+                      <p class="font-medium">Elizabeth Akinyi - Apt 203</p>
+                      <p class="text-sm text-gray-600">Jul 28, 2025</p>
+                    </div>
+                    <span class="px-2 py-1 text-xs bg-yellow-100 text-yellow-800 rounded-full">35 days</span>
+                  </li>
+                  <li class="flex items-center justify-between p-2 bg-yellow-50 rounded-md">
+                    <div>
+                      <p class="font-medium">Brian Ochieng - Unit E2</p>
+                      <p class="text-sm text-gray-600">Aug 02, 2025</p>
+                    </div>
+                    <span class="px-2 py-1 text-xs bg-yellow-100 text-yellow-800 rounded-full">40 days</span>
+                  </li>
+                  <li class="flex items-center justify-between p-2 bg-yellow-50 rounded-md">
+                    <div>
+                      <p class="font-medium">Grace Kariuki - House 9</p>
+                      <p class="text-sm text-gray-600">Aug 15, 2025</p>
+                    </div>
+                    <span class="px-2 py-1 text-xs bg-yellow-100 text-yellow-800 rounded-full">53 days</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="mt-4 text-center">
+              <a href="javascript:void(0)" class="text-blue-600 hover:underline text-sm">View Full Expiry Calendar</a>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg shadow">
+            <h3 class="text-lg font-semibold mb-4">Lease Status Distribution</h3>
+            <div class="h-64">
+              <canvas id="leaseStatusChart"></canvas>
+            </div>
+            <div class="mt-4 grid grid-cols-2 gap-4">
+              <div class="bg-green-50 p-3 rounded-md text-center">
+                <p class="text-sm text-gray-600">Active Leases</p>
+                <p class="text-2xl font-bold text-green-600">24</p>
+              </div>
+              <div class="bg-yellow-50 p-3 rounded-md text-center">
+                <p class="text-sm text-gray-600">Pending Renewal</p>
+                <p class="text-2xl font-bold text-yellow-600">3</p>
+              </div>
+              <div class="bg-blue-50 p-3 rounded-md text-center">
+                <p class="text-sm text-gray-600">Avg. Lease Length</p>
+                <p class="text-2xl font-bold text-blue-600">12 <span class="text-sm">months</span></p>
+              </div>
+              <div class="bg-purple-50 p-3 rounded-md text-center">
+                <p class="text-sm text-gray-600">Renewal Rate</p>
+                <p class="text-2xl font-bold text-purple-600">78%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

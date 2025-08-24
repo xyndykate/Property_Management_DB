@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KenyaRent Pro - Rental Property Management System</title>
+  
+  <!-- Dependencies -->
+  <link  rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+  </head>
+<!-- Settings Page -->
+      <div id="settings" class="page-section hidden">
+        <div class="flex justify-between items-center mb-6">
+          <div>
+            <h2 class="text-xl font-bold text-gray-800">System Settings</h2>
+            <p class="text-gray-600">Configure application preferences</p>
+          </div>
+          <button class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg flex items-center">
+            <i class="fas fa-save mr-2"></i> Save Changes
+          </button>
+        </div>
+
+        <!-- Settings Tabs -->
+        <div class="bg-white rounded-lg shadow mb-6">
+          <div class="border-b border-gray-200">
+            <nav class="flex -mb-px">
+              <button class="settings-tab py-4 px-6 border-b-2 border-blue-500 text-blue-600 font-medium" data-target="general">
+                <i class="fas fa-cog mr-2"></i> General
+              </button>
+              <button class="settings-tab py-4 px-6 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium" data-target="notifications">
+                <i class="fas fa-bell mr-2"></i> Notifications
+              </button>
+              <button class="settings-tab py-4 px-6 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium" data-target="payments">
+                <i class="fas fa-money-bill-wave mr-2"></i> Payment Settings
+              </button>
+              <button class="settings-tab py-4 px-6 border-b-2 border-transparent text
