@@ -16,70 +16,90 @@
     <!-- Sidebar Navigation -->
     <aside id="sidebar" class="sidebar fixed h-full bg-white shadow-lg z-20">
         <div class="flex flex-col h-full">
+            <!-- Logo Section -->
             <div class="p-4 flex items-center justify-between border-b">
                 <div class="flex items-center">
                     <img src="https://cdn.pixabay.com/photo/2017/01/13/01/22/rocket-1976107_960_720.png" class="h-8 w-8 mr-2" alt="Logo">
-                    <h1 class="logo-text text-lg font-bold text-blue-700">KenyaRent Pro</h1>
+                    <h1 class="text-lg font-bold text-blue-700">KenyaRent Pro</h1>
                 </div>
-                <button id="toggleSidebar" class="p-1 rounded-full hover:bg-gray-100">
-                    <i class="fas fa-chevron-left toggle-icon"></i>
+                <button id="toggleSidebar" class="p-2 rounded-lg hover:bg-gray-100">
+                    <i class="fas fa-bars"></i>
                 </button>
             </div>
+
+            <!-- Main Navigation -->
             <nav class="flex-grow py-4">
+                <div class="nav-section-header">Main</div>
                 <ul>
                     <li>
                         <a href="#" id="dashboard-tab" class="nav-item active" data-page="dashboard">
-                            <i class="fas fa-tachometer-alt w-5"></i>
+                            <i class="fas fa-tachometer-alt"></i>
                             <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" id="properties-tab" class="nav-item flex items-center py-3 px-4" data-page="properties">
-                            <i class="fas fa-building w-5 text-center"></i>
-                            <span class="nav-text ml-3">Properties</span>
+                        <a href="#" id="properties-tab" class="nav-item" data-page="properties">
+                            <i class="fas fa-building"></i>
+                            <span class="nav-text">Properties</span>
                         </a>
                     </li>
                     <li>
                         <a href="#" id="tenants-tab" class="nav-item" data-page="tenants">
-                            <i class="fas fa-users w-5"></i>
+                            <i class="fas fa-users"></i>
                             <span class="nav-text">Tenants</span>
                         </a>
                     </li>
+                </ul>
+
+                <div class="nav-section-header">Management</div>
+                <ul>
                     <li>
                         <a href="#" id="leases-tab" class="nav-item" data-page="leases">
-                            <i class="fas fa-file-contract w-5"></i>
+                            <i class="fas fa-file-contract"></i>
                             <span class="nav-text">Leases</span>
                         </a>
                     </li>
                     <li>
                         <a href="#" id="billing-tab" class="nav-item" data-page="billing">
-                            <i class="fas fa-file-invoice-dollar w-5"></i>
+                            <i class="fas fa-file-invoice-dollar"></i>
                             <span class="nav-text">Billing & Payments</span>
                         </a>
                     </li>
                     <li>
                         <a href="#" id="utilities-tab" class="nav-item" data-page="utilities">
-                            <i class="fas fa-tint w-5"></i>
+                            <i class="fas fa-tint"></i>
                             <span class="nav-text">Utility Metering</span>
                         </a>
                     </li>
+                </ul>
+
+                <div class="nav-section-header">Reports & Settings</div>
+                <ul>
                     <li>
                         <a href="#" id="reports-tab" class="nav-item" data-page="reports">
-                            <i class="fas fa-chart-bar w-5"></i>
+                            <i class="fas fa-chart-bar"></i>
                             <span class="nav-text">Reports & Analytics</span>
                         </a>
                     </li>
                 </ul>
             </nav>
-            <div class="p-4 border-t">
-                <a href="javascript:void(0)" class="nav-item flex items-center py-3 px-4" data-page="settings">
-                    <i class="fas fa-cog w-5 text-center"></i>
-                    <span class="nav-text ml-3">Settings</span>
-                </a>
-                <a href="javascript:void(0)" class="nav-item flex items-center py-3 px-4 text-red-600">
-                    <i class="fas fa-sign-out-alt w-5 text-center"></i>
-                    <span class="nav-text ml-3">Logout</span>
-                </a>
+
+            <!-- Bottom Actions -->
+            <div class="border-t">
+                <ul>
+                    <li>
+                        <a href="#" id="settings-tab" class="nav-item" data-page="settings">
+                            <i class="fas fa-cog"></i>
+                            <span class="nav-text">Settings</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-item text-red-600 hover:text-red-700 hover:bg-red-50">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="nav-text">Logout</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </aside>

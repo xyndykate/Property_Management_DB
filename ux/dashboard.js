@@ -73,6 +73,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Initialize utilities charts after content is loaded
                 setTimeout(initializeUtilitiesCharts, 100);
             }
+        },
+        'settings-tab': {
+            file: 'settings.html',
+            callback: () => {
+                // Initialize settings functionality after content is loaded
+                setTimeout(initializeSettings, 100);
+            }
         }
     };
 
@@ -117,6 +124,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>`;
             }
         });
+    });
+
+    document.getElementById('toggleSidebar').addEventListener('click', function() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('collapsed');
+        
+        // Update toggle button icon
+        const icon = this.querySelector('i');
+        if (sidebar.classList.contains('collapsed')) {
+            icon.classList.replace('fa-bars', 'fa-chevron-right');
+        } else {
+            icon.classList.replace('fa-chevron-right', 'fa-bars');
+        }
     });
 });
 
@@ -307,4 +327,21 @@ function initializeUtilitiesCharts() {
             }
         });
     }
+}
+
+function initializeSettings() {
+    // Add click handlers for settings tabs
+    document.querySelectorAll('.settings-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            // Remove active state from all tabs
+            document.querySelectorAll('.settings-tab').forEach(t => {
+                t.classList.remove('border-blue-500', 'text-blue-600');
+                t.classList.add('border-transparent', 'text-gray-500');
+            });
+
+            // Add active state to clicked tab
+            this.classList.remove('border-transparent', 'text-gray-500');
+            this.classList.add('border-blue-500', 'text-blue-600');
+        });
+    });
 }

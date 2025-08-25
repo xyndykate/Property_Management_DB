@@ -15,51 +15,83 @@
 <body>
   <!-- Settings Page -->
   <div id="settings" >
-    <div class="flex justify-between items-center mb-6">
-      <div>
-        <h2 class="text-xl font-bold text-gray-800">System Settings</h2>
-        <p class="text-gray-600">Configure application preferences</p>
-      </div>
-      <button class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg flex items-center">
-        <i class="fas fa-save mr-2"></i> Save Changes
-      </button>
-    </div>
+    <div class="settings-content">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold text-gray-800">Settings</h1>
+            <button class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg flex items-center">
+                <i class="fas fa-save mr-2"></i> Save Changes
+            </button>
+        </div>
 
-    <!-- Settings Tabs -->
-    <div class="bg-white rounded-lg shadow mb-6">
-      <div class="border-b border-gray-200">
-        <nav class="flex -mb-px">
-          <button class="settings-tab py-4 px-6 border-b-2 border-blue-500 text-blue-600 font-medium" data-target="general">
-            <i class="fas fa-cog mr-2"></i> General
-          </button>
-          <button class="settings-tab py-4 px-6 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium" data-target="notifications">
-            <i class="fas fa-bell mr-2"></i> Notifications
-          </button>
-          <button class="settings-tab py-4 px-6 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium" data-target="payments">
-            <i class="fas fa-money-bill-wave mr-2"></i> Payment Settings
-          </button>
-          <button class="settings-tab py-4 px-6 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium" data-target="security">
-            <i class="fas fa-shield-alt mr-2"></i> Security
-          </button>
-        </nav>
-      </div>
-      <!-- Settings Tab Content Example -->
-      <div class="p-6" id="general">
-        <h3 class="text-lg font-semibold mb-4">General Settings</h3>
-        <!-- General settings form fields go here -->
-      </div>
-      <div class="p-6 hidden" id="notifications">
-        <h3 class="text-lg font-semibold mb-4">Notification Settings</h3>
-        <!-- Notification settings form fields go here -->
-      </div>
-      <div class="p-6 hidden" id="payments">
-        <h3 class="text-lg font-semibold mb-4">Payment Settings</h3>
-        <!-- Payment settings form fields go here -->
-      </div>
-      <div class="p-6 hidden" id="security">
-        <h3 class="text-lg font-semibold mb-4">Security Settings</h3>
-        <!-- Security settings form fields go here -->
-      </div>
+        <!-- Settings Tabs -->
+        <div class="bg-white rounded-lg shadow">
+            <div class="border-b border-gray-200">
+                <nav class="flex -mb-px">
+                    <button class="settings-tab py-4 px-6 border-b-2 border-blue-500 text-blue-600 font-medium" data-tab="general">
+                        <i class="fas fa-cog mr-2"></i> General
+                    </button>
+                    <button class="settings-tab py-4 px-6 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium" data-tab="notifications">
+                        <i class="fas fa-bell mr-2"></i> Notifications
+                    </button>
+                    <button class="settings-tab py-4 px-6 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium" data-tab="billing">
+                        <i class="fas fa-money-bill-wave mr-2"></i> Billing
+                    </button>
+                    <button class="settings-tab py-4 px-6 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium" data-tab="security">
+                        <i class="fas fa-shield-alt mr-2"></i> Security
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Settings Content -->
+            <div class="p-6" id="settingsContent">
+                <!-- General Settings -->
+                <div class="settings-panel" id="general-panel">
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-medium mb-4">Company Information</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Company Name</label>
+                                    <input type="text" class="w-full px-3 py-2 border rounded-lg" value="KenyaRent Pro">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                                    <input type="email" class="w-full px-3 py-2 border rounded-lg" value="info@kenyarentpro.com">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-medium mb-4">System Preferences</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="font-medium">Currency Format</h4>
+                                        <p class="text-sm text-gray-500">Select your preferred currency display format</p>
+                                    </div>
+                                    <select class="px-3 py-2 border rounded-lg">
+                                        <option>KSh (KES)</option>
+                                        <option>USD ($)</option>
+                                        <option>EUR (€)</option>
+                                    </select>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="font-medium">Date Format</h4>
+                                        <p class="text-sm text-gray-500">Choose how dates should be displayed</p>
+                                    </div>
+                                    <select class="px-3 py-2 border rounded-lg">
+                                        <option>DD/MM/YYYY</option>
+                                        <option>MM/DD/YYYY</option>
+                                        <option>YYYY-MM-DD</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
   </div>
 </body>
