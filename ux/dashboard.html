@@ -1,361 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KenyaRent Pro - Rental Property Management System</title>
-  
-  <!-- Dependencies -->
-  <link  rel="stylesheet" href="style.css">
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
-  
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KenyaRent Pro - Dashboard</title>
+    
+    <!-- Dependencies -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
 </head>
 <body class="min-h-screen">
-  <!-- Sidebar Navigation -->
-  <aside id="sidebar" class="sidebar fixed h-full bg-white shadow-lg z-20">
-    <div class="flex flex-col h-full">
-      <div class="p-4 flex items-center justify-between border-b">
-        <div class="flex items-center">
-          <img src="https://cdn.pixabay.com/photo/2017/01/13/01/22/rocket-1976107_960_720.png" class="h-8 w-8 mr-2" alt="Logo">
-          <h1 class="logo-text text-lg font-bold text-blue-700">KenyaRent Pro</h1>
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="sidebar fixed h-full bg-white shadow-lg z-20">
+        <div class="flex flex-col h-full">
+            <div class="p-4 flex items-center justify-between border-b">
+                <div class="flex items-center">
+                    <img src="https://cdn.pixabay.com/photo/2017/01/13/01/22/rocket-1976107_960_720.png" class="h-8 w-8 mr-2" alt="Logo">
+                    <h1 class="logo-text text-lg font-bold text-blue-700">KenyaRent Pro</h1>
+                </div>
+                <button id="toggleSidebar" class="p-1 rounded-full hover:bg-gray-100">
+                    <i class="fas fa-chevron-left toggle-icon"></i>
+                </button>
+            </div>
+            <nav class="flex-grow py-4">
+                <ul>
+                    <li>
+                        <a href="#" id="dashboard-tab" class="nav-item active" data-page="dashboard">
+                            <i class="fas fa-tachometer-alt w-5"></i>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="properties-tab" class="nav-item flex items-center py-3 px-4" data-page="properties">
+                            <i class="fas fa-building w-5 text-center"></i>
+                            <span class="nav-text ml-3">Properties</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="tenants-tab" class="nav-item" data-page="tenants">
+                            <i class="fas fa-users w-5"></i>
+                            <span class="nav-text">Tenants</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="leases-tab" class="nav-item" data-page="leases">
+                            <i class="fas fa-file-contract w-5"></i>
+                            <span class="nav-text">Leases</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="billing-tab" class="nav-item" data-page="billing">
+                            <i class="fas fa-file-invoice-dollar w-5"></i>
+                            <span class="nav-text">Billing & Payments</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="utilities-tab" class="nav-item" data-page="utilities">
+                            <i class="fas fa-tint w-5"></i>
+                            <span class="nav-text">Utility Metering</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="reports-tab" class="nav-item" data-page="reports">
+                            <i class="fas fa-chart-bar w-5"></i>
+                            <span class="nav-text">Reports & Analytics</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="p-4 border-t">
+                <a href="javascript:void(0)" class="nav-item flex items-center py-3 px-4" data-page="settings">
+                    <i class="fas fa-cog w-5 text-center"></i>
+                    <span class="nav-text ml-3">Settings</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-item flex items-center py-3 px-4 text-red-600">
+                    <i class="fas fa-sign-out-alt w-5 text-center"></i>
+                    <span class="nav-text ml-3">Logout</span>
+                </a>
+            </div>
         </div>
-        <button id="toggleSidebar" class="p-1 rounded-full hover:bg-gray-100">
-          <i class="fas fa-chevron-left toggle-icon"></i>
-        </button>
-      </div>
-      <nav class="flex-grow py-4">
-        <ul>
-          <li>
-            <a href="javascript:void(0)" class="nav-item active flex items-center py-3 px-4" data-page="dashboard">
-              <i class="fas fa-tachometer-alt w-5 text-center"></i>
-              <span class="nav-text ml-3">Dashboard</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)" class="nav-item flex items-center py-3 px-4" data-page="properties">
-              <i class="fas fa-building w-5 text-center"></i>
-              <span class="nav-text ml-3">Properties</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)" class="nav-item flex items-center py-3 px-4" data-page="tenants">
-              <i class="fas fa-users w-5 text-center"></i>
-              <span class="nav-text ml-3">Tenants</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)" class="nav-item flex items-center py-3 px-4" data-page="leases">
-              <i class="fas fa-file-contract w-5 text-center"></i>
-              <span class="nav-text ml-3">Leases</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)" class="nav-item flex items-center py-3 px-4" data-page="billing">
-              <i class="fas fa-file-invoice-dollar w-5 text-center"></i>
-              <span class="nav-text ml-3">Billing & Payments</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)" class="nav-item flex items-center py-3 px-4" data-page="utilities">
-              <i class="fas fa-tint w-5 text-center"></i>
-              <span class="nav-text ml-3">Utility Metering</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)" class="nav-item flex items-center py-3 px-4" data-page="reports">
-              <i class="fas fa-chart-bar w-5 text-center"></i>
-              <span class="nav-text ml-3">Reports & Analytics</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <div class="p-4 border-t">
-        <a href="javascript:void(0)" class="nav-item flex items-center py-3 px-4" data-page="settings">
-          <i class="fas fa-cog w-5 text-center"></i>
-          <span class="nav-text ml-3">Settings</span>
-        </a>
-        <a href="javascript:void(0)" class="nav-item flex items-center py-3 px-4 text-red-600">
-          <i class="fas fa-sign-out-alt w-5 text-center"></i>
-          <span class="nav-text ml-3">Logout</span>
-        </a>
-      </div>
-    </div>
-  </aside>
+    </aside>
 
-  <!-- Main Content -->
-  <main class="main-content min-h-screen p-6 pb-20">
-    <!-- Header -->
-    <header class="flex justify-between items-center mb-6">
-      <h1 id="page-title" class="text-2xl font-bold text-gray-800">Dashboard</h1>
-      <div class="flex items-center">
-        <div class="relative mr-4">
-          <input type="text" placeholder="Search..." class="pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
-          <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
-        </div>
-        <div class="relative mr-4">
-          <button class="relative p-2 rounded-full bg-gray-100 hover:bg-gray-200">
-            <i class="fas fa-bell text-gray-600"></i>
-            <span class="absolute top-0 right-0 h-4 w-4 rounded-full bg-red-500 text-white text-xs flex items-center justify-center">3</span>
-          </button>
-        </div>
-        <div class="flex items-center">
-          <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile" class="w-10 h-10 rounded-full mr-2 object-cover border-2 border-blue-600">
-          <div>
-            <p class="text-sm font-medium">John Kamau</p>
-            <p class="text-xs text-gray-500">Property Manager</p>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- Page Content -->
-    <div id="page-content">
-      <!-- Dashboard Page -->
-      <div id="dashboard" class="page-section">
-        <!-- Summary Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div class="card bg-white p-6 rounded-lg shadow">
-            <div class="flex justify-between items-center mb-4">
-              <h3 class="text-lg font-semibold text-gray-700">Total Properties</h3>
-              <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
-                <i class="fas fa-building text-blue-600"></i>
-              </div>
-            </div>
-            <div class="flex items-end">
-              <span class="text-3xl font-bold">12</span>
-              <span class="ml-2 text-sm text-green-600 flex items-center">
-                <i class="fas fa-arrow-up mr-1"></i>8% <span class="text-gray-500 ml-1">vs last month</span>
-              </span>
-            </div>
-          </div>
-
-          <div class="card bg-white p-6 rounded-lg shadow">
-            <div class="flex justify-between items-center mb-4">
-              <h3 class="text-lg font-semibold text-gray-700">Active Leases</h3>
-              <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
-                <i class="fas fa-file-contract text-green-600"></i>
-              </div>
-            </div>
-            <div class="flex items-end">
-              <span class="text-3xl font-bold">28</span>
-              <span class="ml-2 text-sm text-green-600 flex items-center">
-                <i class="fas fa-arrow-up mr-1"></i>12% <span class="text-gray-500 ml-1">vs last month</span>
-              </span>
-            </div>
-          </div>
-
-          <div class="card bg-white p-6 rounded-lg shadow">
-            <div class="flex justify-between items-center mb-4">
-              <h3 class="text-lg font-semibold text-gray-700">Occupancy Rate</h3>
-              <div class="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
-                <i class="fas fa-percentage text-yellow-600"></i>
-              </div>
-            </div>
-            <div class="flex items-end">
-              <span class="text-3xl font-bold">86%</span>
-              <span class="ml-2 text-sm text-green-600 flex items-center">
-                <i class="fas fa-arrow-up mr-1"></i>3% <span class="text-gray-500 ml-1">vs last month</span>
-              </span>
-            </div>
-          </div>
-
-          <div class="card bg-white p-6 rounded-lg shadow">
-            <div class="flex justify-between items-center mb-4">
-              <h3 class="text-lg font-semibold text-gray-700">Revenue (MTD)</h3>
-              <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center">
-                <i class="fas fa-money-bill-wave text-purple-600"></i>
-              </div>
-            </div>
-            <div class="flex items-end">
-              <span class="text-3xl font-bold">KSh 850,000</span>
-              <span class="ml-2 text-sm text-green-600 flex items-center">
-                <i class="fas fa-arrow-up mr-1"></i>5% <span class="text-gray-500 ml-1">vs last month</span>
-              </span>
-            </div>
-          </div>
-        </div>
-
+    <!-- Main Content Area -->
+    <main id="main-content" class="main-content min-h-screen p-6 pb-20">
         <!-- Revenue & Occupancy Charts -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <div class="card bg-white p-6 rounded-lg shadow">
-            <div class="flex justify-between items-center mb-6">
-              <h3 class="text-lg font-semibold text-gray-700">Revenue Trends</h3>
-              <div class="relative">
-                <select class="appearance-none bg-gray-100 border-none rounded-md py-1 px-3 pr-8 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600">
-                  <option>Last 6 Months</option>
-                  <option>Last 12 Months</option>
-                  <option>Year to Date</option>
-                </select>
-                <i class="fas fa-chevron-down text-gray-400 absolute right-2 top-2 pointer-events-none"></i>
-              </div>
+            <div class="card bg-white p-6 rounded-lg shadow">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-lg font-semibold text-gray-700">Revenue Trends</h3>
+                    <div class="relative">
+                        <select class="appearance-none bg-gray-100 border-none rounded-md py-1 px-3 pr-8 text-sm">
+                            <option>Last 6 Months</option>
+                            <option>Last 12 Months</option>
+                            <option>Year to Date</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="h-64">
+                    <canvas id="revenueChart"></canvas>
+                </div>
             </div>
-            <div class="h-64">
-              <canvas id="revenueChart"></canvas>
-            </div>
-          </div>
 
-          <div class="card bg-white p-6 rounded-lg shadow">
-            <div class="flex justify-between items-center mb-6">
-              <h3 class="text-lg font-semibold text-gray-700">Occupancy Rate</h3>
-              <div class="relative">
-                <select class="appearance-none bg-gray-100 border-none rounded-md py-1 px-3 pr-8 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600">
-                  <option>Last 6 Months</option>
-                  <option>Last 12 Months</option>
-                  <option>Year to Date</option>
-                </select>
-                <i class="fas fa-chevron-down text-gray-400 absolute right-2 top-2 pointer-events-none"></i>
-              </div>
+            <div class="card bg-white p-6 rounded-lg shadow">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-lg font-semibold text-gray-700">Occupancy Rate</h3>
+                    <div class="relative">
+                        <select class="appearance-none bg-gray-100 border-none rounded-md py-1 px-3 pr-8 text-sm">
+                            <option>Last 6 Months</option>
+                            <option>Last 12 Months</option>
+                            <option>Year to Date</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="h-64">
+                    <canvas id="occupancyChart"></canvas>
+                </div>
             </div>
-            <div class="h-64">
-              <canvas id="occupancyChart"></canvas>
-            </div>
-          </div>
         </div>
 
-        <!-- Recent Payments & Upcoming Dues -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <div class="card bg-white p-6 rounded-lg shadow">
-            <div class="flex justify-between items-center mb-6">
-              <h3 class="text-lg font-semibold text-gray-700">Recent Payments</h3>
-              <a href="javascript:void(0)" class="text-blue-600 text-sm hover:underline">View All</a>
-            </div>
-            <div class="overflow-x-auto">
-              <table class="w-full text-sm">
-                <thead>
-                  <tr class="text-left border-b">
-                    <th class="pb-3 font-medium">Tenant</th>
-                    <th class="pb-3 font-medium">Property</th>
-                    <th class="pb-3 font-medium">Amount</th>
-                    <th class="pb-3 font-medium">Date</th>
-                    <th class="pb-3 font-medium">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="border-b">
-                    <td class="py-3">Alice Wanjiku</td>
-                    <td class="py-3">Apt 101, Sunshine Towers</td>
-                    <td class="py-3">KSh 45,000</td>
-                    <td class="py-3">Jun 02, 2025</td>
-                    <td class="py-3"><span class="px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">Completed</span></td>
-                  </tr>
-                  <tr class="border-b">
-                    <td class="py-3">John Omondi</td>
-                    <td class="py-3">Unit B2, Green Gardens</td>
-                    <td class="py-3">KSh 38,000</td>
-                    <td class="py-3">Jun 01, 2025</td>
-                    <td class="py-3"><span class="px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">Completed</span></td>
-                  </tr>
-                  <tr class="border-b">
-                    <td class="py-3">Mary Wambui</td>
-                    <td class="py-3">House 7, Riverside Estate</td>
-                    <td class="py-3">KSh 65,000</td>
-                    <td class="py-3">May 30, 2025</td>
-                    <td class="py-3"><span class="px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">Completed</span></td>
-                  </tr>
-                  <tr>
-                    <td class="py-3">David Kiarie</td>
-                    <td class="py-3">Apt 304, Parkview Heights</td>
-                    <td class="py-3">KSh 42,000</td>
-                    <td class="py-3">May 29, 2025</td>
-                    <td class="py-3"><span class="px-2 py-1 rounded-full text-xs bg-yellow-100 text-yellow-800">Processing</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <div class="card bg-white p-6 rounded-lg shadow">
-            <div class="flex justify-between items-center mb-6">
-              <h3 class="text-lg font-semibold text-gray-700">Upcoming Payments Due</h3>
-              <a href="javascript:void(0)" class="text-blue-600 text-sm hover:underline">View All</a>
-            </div>
-            <div class="overflow-x-auto">
-              <table class="w-full text-sm">
-                <thead>
-                  <tr class="text-left border-b">
-                    <th class="pb-3 font-medium">Tenant</th>
-                    <th class="pb-3 font-medium">Property</th>
-                    <th class="pb-3 font-medium">Amount</th>
-                    <th class="pb-3 font-medium">Due Date</th>
-                    <th class="pb-3 font-medium">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="border-b">
-                    <td class="py-3">James Maina</td>
-                    <td class="py-3">Unit C5, Serene Apartments</td>
-                    <td class="py-3">KSh 50,000</td>
-                    <td class="py-3">Jun 05, 2025</td>
-                    <td class="py-3"><span class="px-2 py-1 rounded-full text-xs bg-red-100 text-red-800">Overdue</span></td>
-                  </tr>
-                  <tr class="border-b">
-                    <td class="py-3">Sarah Njeri</td>
-                    <td class="py-3">Apt 202, Sunset Heights</td>
-                    <td class="py-3">KSh 35,000</td>
-                    <td class="py-3">Jun 07, 2025</td>
-                    <td class="py-3"><span class="px-2 py-1 rounded-full text-xs bg-yellow-100 text-yellow-800">Pending</span></td>
-                  </tr>
-                  <tr class="border-b">
-                    <td class="py-3">George Otieno</td>
-                    <td class="py-3">Unit A1, Lakeside View</td>
-                    <td class="py-3">KSh 42,500</td>
-                    <td class="py-3">Jun 10, 2025</td>
-                    <td class="py-3"><span class="px-2 py-1 rounded-full text-xs bg-yellow-100 text-yellow-800">Pending</span></td>
-                  </tr>
-                  <tr>
-                    <td class="py-3">Lucy Waithera</td>
-                    <td class="py-3">House 12, Garden Estate</td>
-                    <td class="py-3">KSh 58,000</td>
-                    <td class="py-3">Jun 15, 2025</td>
-                    <td class="py-3"><span class="px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800">Upcoming</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- Utility Consumption -->
+        <!-- Utility Consumption Chart -->
         <div class="card bg-white p-6 rounded-lg shadow mb-8">
-          <div class="flex justify-between items-center mb-6">
-            <h3 class="text-lg font-semibold text-gray-700">Utility Consumption Trends</h3>
-            <div class="relative">
-              <select class="appearance-none bg-gray-100 border-none rounded-md py-1 px-3 pr-8 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600">
-                <option>Water & Electricity</option>
-                <option>Water Only</option>
-                <option>Electricity Only</option>
-              </select>
-              <i class="fas fa-chevron-down text-gray-400 absolute right-2 top-2 pointer-events-none"></i>
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-lg font-semibold text-gray-700">Utility Consumption Trends</h3>
+                <div class="relative">
+                    <select class="appearance-none bg-gray-100 border-none rounded-md py-1 px-3 pr-8 text-sm">
+                        <option>Water & Electricity</option>
+                        <option>Water Only</option>
+                        <option>Electricity Only</option>
+                    </select>
+                </div>
             </div>
-          </div>
-          <div class="h-80">
-            <canvas id="utilityChart"></canvas>
-          </div>
+            <div class="h-80">
+                <canvas id="utilityChart"></canvas>
+            </div>
         </div>
+    </main>
 
-        <!-- Quick Actions -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <button class="flex flex-col items-center justify-center py-6 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition-colors">
-            <i class="fas fa-plus-circle text-2xl mb-2"></i>
-            <span>Add New Property</span>
-          </button>
-          <button class="flex flex-col items-center justify-center py-6 bg-green-600 text-white rounded-lg shadow-lg hover:bg-green-700 transition-colors">
-            <i class="fas fa-user-plus text-2xl mb-2"></i>
-            <span>Register Tenant</span>
-          </button>
-          <button class="flex flex-col items-center justify-center py-6 bg-purple-600 text-white rounded-lg shadow-lg hover:bg-purple-700 transition-colors">
-            <i class="fas fa-file-alt text-2xl mb-2"></i>
-            <span>Create Lease</span>
-          </button>
-          <button class="flex flex-col items-center justify-center py-6 bg-yellow-500 text-white rounded-lg shadow-lg hover:bg-yellow-600 transition-colors">
-            <i class="fas fa-receipt text-2xl mb-2"></i>
-            <span>Record Payment</span>
-          </button>
-        </div>
-      </div>
+    <script src="dashboard.js"></script>
+</body>
+</html>
 
-      

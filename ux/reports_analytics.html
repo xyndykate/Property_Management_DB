@@ -511,3 +511,81 @@
           </div>
         </div>
       </div>
+      <div class="reports-content">
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-gray-800">Reports & Analytics</h1>
+        <div class="flex space-x-4">
+            <button class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg flex items-center">
+                <i class="fas fa-download mr-2"></i> Export Report
+            </button>
+            <select class="appearance-none bg-gray-100 border-none rounded-md py-2 px-4 text-sm">
+                <option>Last 30 Days</option>
+                <option>Last 3 Months</option>
+                <option>Last 6 Months</option>
+                <option>Year to Date</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Report Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <!-- Revenue Overview -->
+        <div class="bg-white p-6 rounded-lg shadow">
+            <h3 class="text-lg font-semibold mb-4">Revenue Overview</h3>
+            <canvas id="revenueChart" class="h-64"></canvas>
+        </div>
+
+        <!-- Occupancy Trends -->
+        <div class="bg-white p-6 rounded-lg shadow">
+            <h3 class="text-lg font-semibold mb-4">Occupancy Trends</h3>
+            <canvas id="occupancyTrendChart" class="h-64"></canvas>
+        </div>
+
+        <!-- Payment Status -->
+        <div class="bg-white p-6 rounded-lg shadow">
+            <h3 class="text-lg font-semibold mb-4">Payment Status</h3>
+            <canvas id="paymentStatusChart" class="h-64"></canvas>
+        </div>
+    </div>
+
+    <!-- Detailed Reports Section -->
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+        <div class="p-6">
+            <h3 class="text-lg font-semibold mb-4">Detailed Reports</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="p-4 border rounded-lg">
+                    <h4 class="text-sm text-gray-500">Financial Reports</h4>
+                    <ul class="mt-2 space-y-2">
+                        <li><a href="#" class="text-blue-600 hover:underline">Income Statement</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Cash Flow</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Balance Sheet</a></li>
+                    </ul>
+                </div>
+                <div class="p-4 border rounded-lg">
+                    <h4 class="text-sm text-gray-500">Occupancy Reports</h4>
+                    <ul class="mt-2 space-y-2">
+                        <li><a href="#" class="text-blue-600 hover:underline">Vacancy Rates</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Tenant Turnover</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Lease Expiry</a></li>
+                    </ul>
+                </div>
+                <div class="p-4 border rounded-lg">
+                    <h4 class="text-sm text-gray-500">Maintenance Reports</h4>
+                    <ul class="mt-2 space-y-2">
+                        <li><a href="#" class="text-blue-600 hover:underline">Work Orders</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Maintenance Costs</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Property Condition</a></li>
+                    </ul>
+                </div>
+                <div class="p-4 border rounded-lg">
+                    <h4 class="text-sm text-gray-500">Utility Reports</h4>
+                    <ul class="mt-2 space-y-2">
+                        <li><a href="#" class="text-blue-600 hover:underline">Water Usage</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Electricity Usage</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Cost Analysis</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

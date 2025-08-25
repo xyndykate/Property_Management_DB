@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KenyaRent Pro - Rental Property Management System</title>
+  
+  <!-- Dependencies -->
+  <link  rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+  </head>
+<div class="utilities-content">
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-gray-800">Utility Metering</h1>
+        <div class="flex space-x-4">
+            <button class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg flex items-center">
+                <i class="fas fa-plus mr-2"></i> Record Meter Reading
+            </button>
+            <select class="appearance-none bg-gray-100 border-none rounded-md py-2 px-4 text-sm">
+                <option>Last 30 Days</option>
+                <option>Last 3 Months</option>
+                <option>Last 6 Months</option>
+                <option>Year to Date</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Utility Summary Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-white p-6 rounded-lg shadow">
+            <div class="flex justify-between items-center mb-2">
+                <h3 class="text-gray-500 text-sm">Total Water Usage</h3>
+                <i class="fas fa-tint text-blue-500"></i>
+            </div>
+            <p class="text-2xl font-bold text-gray-800">2,450 m³</p>
+            <p class="text-sm text-green-600 mt-2">-5% from last month</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow">
+            <div class="flex justify-between items-center mb-2">
+                <h3 class="text-gray-500 text-sm">Average Daily Usage</h3>
+                <i class="fas fa-chart-line text-green-500"></i>
+            </div>
+            <p class="text-2xl font-bold text-gray-800">82 m³</p>
+            <p class="text-sm text-blue-600 mt-2">Across all units</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow">
+            <div class="flex justify-between items-center mb-2">
+                <h3 class="text-gray-500 text-sm">Pending Readings</h3>
+                <i class="fas fa-exclamation-circle text-yellow-500"></i>
+            </div>
+            <p class="text-2xl font-bold text-gray-800">5 Units</p>
+            <p class="text-sm text-yellow-600 mt-2">Readings due today</p>
+        </div>
+    </div>
+
+    <!-- Water Usage Chart -->
+    <div class="bg-white p-6 rounded-lg shadow mb-8">
+        <h3 class="text-lg font-semibold mb-4">Water Consumption Trends</h3>
+        <canvas id="waterUsageChart" class="h-64"></canvas>
+    </div>
+
+    <!-- Meter Readings Table -->
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+        <div class="p-4 border-b">
+            <div class="flex justify-between items-center">
+                <h2 class="text-lg font-semibold">Recent Meter Readings</h2>
+                <input type="text" placeholder="Search unit..." class="px-3 py-1 border rounded-lg">
+            </div>
+        </div>
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Unit</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Current Reading</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Previous Reading</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Usage (m³)</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Reading Date</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                    <td class="px-6 py-4">Apt 101</td>
+                    <td class="px-6 py-4">1,245</td>
+                    <td class="px-6 py-4">1,198</td>
+                    <td class="px-6 py-4">47</td>
+                    <td class="px-6 py-4">Feb 01, 2025</td>
+                    <td class="px-6 py-4">
+                        <span class="px-2 py-1 text-sm rounded-full bg-green-100 text-green-800">Verified</span>
+                    </td>
+                    <td class="px-6 py-4">
+                        <button class="text-blue-600 hover:text-blue-800 mr-3">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="text-blue-600 hover:text-blue-800">
+                            <i class="fas fa-history"></i>
+                        </button>
+                    </td>
+                </tr>
+                <!-- Add more rows with dummy data -->
+            </tbody>
+        </table>
+    </div>
+</div>
